@@ -1,0 +1,27 @@
+{% extends 'partials/base.html' %}
+
+{% block title %}Mapa do Estado de São Paulo - Regiões{% endblock title %}
+
+{% block extra_css %}
+    <!-- Swiper slider css -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+      #map {
+        width: 100%;
+        height: 90vh;
+      }
+    </style>
+{% endblock extra_css %}
+
+{% block content %}
+ <h2>Mapa do Estado de São Paulo com Regiões Coloridas</h2>
+    <div id="map"></div>
+    
+{% endblock content %}
+
+{% block extra_js %}
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="static\js\leaflet\map_cmdo_policiamento.js"></script>
+    <script src="static\js\leaflet\municipios_coordenadas.js"></script>
+    <script src="static\js\leaflet\mapa.js"></script>
+{% endblock extra_js %}

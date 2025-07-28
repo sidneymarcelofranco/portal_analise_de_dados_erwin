@@ -1,0 +1,13 @@
+$env:FLASK_APP = "app.py"; $env:FLASK_DEBUG = "1"; flask run
+
+uv syncuv syn
+cd app
+npm install
+copy app\node_modules\bootstrap\dist\js\bootstrap.bundle.min.js app\static\libs\bootstrap\js\
+mkdir static/libs/toastify-js/static/libs/flatpickr/static/libs/choices.js
+copy app\node_modules\toastify-js\src\toastify.js app\static\libs\toastify-js\src\
+copy app\node_modules\flatpickr\dist\flatpickr.min.js app\static\libs\flatpickr\
+copy app\node_modules\choices.js\public\assets\scripts\choices.min.js app\static\libs\choices.js\public\assets\scripts\
+
+
+flask run --host=0.0.0.0 --port=5000

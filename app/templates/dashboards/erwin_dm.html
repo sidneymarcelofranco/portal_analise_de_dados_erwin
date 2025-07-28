@@ -1,0 +1,499 @@
+{% extends 'partials/base.html' %}
+
+{% block title %}erwin Data Modeler{% endblock title %}
+
+{% block extra_css %}
+    <!-- Swiper slider css -->
+    <link href="{{url_for('static', filename='libs/swiper/swiper-bundle.min.css')}}" 
+          rel="stylesheet" 
+          type="text/css">
+   
+{% endblock extra_css %}
+
+{% block content %}
+    <!-- Cabeçalho -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                <div>
+                    <h1 class="mb-sm-0">erwin Data Modeler</h1>
+                    <!-- Data de coleta -->
+                    <div class="text-muted fw-medium fs-base mt-1"> Dados coletados em
+                        <script>
+                        const hoje = new Date();
+                        const dataBR = hoje.toLocaleDateString('pt-BR');
+                        document.write(dataBR);
+                        </script>
+                    </div>
+                </div>
+
+                <div class="page-title-right">
+                    <div class="d-flex align-items-center gap-2">
+                        <select class="form-select form-select-sm" style="width: auto;" aria-label="Selecionar ano">
+                            <option>2025</option>
+                            <option>2024</option>
+                            <option>2023</option>
+                            <option>2022</option>
+                            <option>2021</option>
+                        </select>
+                        <button class="btn btn-sm btn-primary" aria-label="Download dos dados">
+                            <i class="bi bi-download me-1"></i>Download
+                        </button>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboards</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Análise de Dados</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Cabeçalho -->
+        
+    <!-- KPIs -->
+    <div class="row">
+        <div class="col-xxl-3 col-lg-5">
+            <div class="card card-height-100 overflow-hidden kpi-card"
+                data-chart-type="ativos"
+                style="cursor: pointer;"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Efetivo Ativo."
+                role="button"
+                tabindex="0">
+                <div class="card-body d-flex flex-column text-center">
+                    <div class="avatar-sm mx-auto mb-3">
+                        <div class="avatar-title bg-primary-subtle text-primary fs-3xl rounded">
+                            <i class="ph ph-users" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <h2 id="kpi-ativos-valor" class="mb-2">
+                        <span class="counter-value">80720</span>
+                    </h2>
+                    <p class="text-muted mb-3 fw-medium fs-base">Ativos </p>
+                    <div class="mt-auto">
+                        <p class="text-muted mb-0">
+                            <span class="badge bg-success-subtle text-success fs-sm">
+                                <i class="bi bi-arrow-up" aria-hidden="true"></i> 4.65%
+                            </span><br />
+                            <small class="text-muted">vs Mês anterior</small>
+                        </p>
+                    </div>
+                </div>
+                <div class="progress progress-sm rounded-0" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar bg-primary" style="width: 95%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xxl-9 col-lg-7">
+            <div class="row h-100">
+                <!-- KPI Agregados -->
+                <div class="col-xxl-3 col-md-6 col-sm-6">
+                    <div class="card card-height-100 overflow-hidden kpi-card"
+                        data-chart-type="agregados"
+                        style="cursor: pointer;"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Efetivo Agregado."
+                        role="button"
+                        tabindex="0">
+                        <div class="card-body d-flex flex-column text-center">
+                            <div class="avatar-sm mx-auto mb-3">
+                                <div class="avatar-title bg-secondary-subtle text-secondary fs-3xl rounded">
+                                    <i class="bi bi-hospital" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <h2 id="kpi-agregados-valor" class="mb-2">
+                                <span class="counter-value">938</span>
+                            </h2>
+                            <p class="text-muted mb-3 fw-medium fs-base">Agregados</p>
+                            <div class="mt-auto">
+                                <p class="text-muted mb-0">
+                                    <span class="badge bg-success-subtle text-success fs-sm">
+                                        <i class="bi bi-arrow-up" aria-hidden="true"></i> 1.33%
+                                    </span><br />
+                                    <small class="text-muted">vs Mês anterior</small>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="progress progress-sm rounded-0" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar bg-secondary" style="width: 88%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KPI Inativos -->
+                <div class="col-xxl-3 col-md-6 col-sm-6">
+                    <div class="card card-height-100 overflow-hidden kpi-card"
+                        data-chart-type="inativos"
+                        style="cursor: pointer;"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Efetivo Inativo."
+                        role="button"
+                        tabindex="0">
+                        <div class="card-body d-flex flex-column text-center">
+                            <div class="avatar-sm mx-auto mb-3">
+                                <div class="avatar-title bg-success-subtle text-success fs-3xl rounded">
+                                    <i class="ph ph-mask-happy-thin" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <h2 id="kpi-inativos-valor" class="mb-2">
+                                <span class="counter-value">76086</span>
+                            </h2>
+                            <p class="text-muted mb-3 fw-medium fs-base">Inativos</p>
+                            <div class="mt-auto">
+                                <p class="text-muted mb-0">
+                                    <span class="badge bg-success-subtle text-success fs-sm">
+                                        <i class="bi bi-arrow-up" aria-hidden="true"></i> 2.69%
+                                    </span><br />
+                                    <small class="text-muted">vs Mês anterior</small>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="progress progress-sm rounded-0" role="progressbar" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar bg-danger" style="width: 18%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KPI Desligados -->
+                <div class="col-xxl-3 col-md-6 col-sm-6">
+                    <div class="card card-height-100 overflow-hidden kpi-card"
+                        data-chart-type="desligados"
+                        style="cursor: pointer;"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Efetivo que foi desligado."
+                        role="button"
+                        tabindex="0">
+                        <div class="card-body d-flex flex-column text-center">
+                            <div class="avatar-sm mx-auto mb-3">
+                                <div class="avatar-title bg-danger-subtle text-danger fs-3xl rounded">
+                                    <i class="ph ph-mask-sad-light" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <h2 id="kpi-desligados-valor" class="mb-2">
+                                <span class="counter-value">38239</span>
+                            </h2>
+                            <p class="text-muted mb-3 fw-medium fs-base">Desligados</p>
+                            <div class="mt-auto">
+                                <p class="text-muted mb-0">
+                                    <span class="badge bg-danger-subtle text-danger fs-sm">
+                                        <i class="bi bi-arrow-down" aria-hidden="true"></i> 0.78%
+                                    </span><br />
+                                    <small class="text-muted">vs Mês anterior</small>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="progress progress-sm rounded-0" role="progressbar" aria-valuenow="49" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar bg-success" style="width: 49%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KPI Mortos -->
+                <div class="col-xxl-3 col-md-6 col-sm-6">
+                    <div class="card card-height-100 overflow-hidden kpi-card"
+                        data-chart-type="mortos"
+                        style="cursor: pointer;"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Óbitos."
+                        role="button"
+                        tabindex="0">
+                        <div class="card-body d-flex flex-column text-center">
+                            <div class="avatar-sm mx-auto mb-3">
+                                <div class="avatar-title bg-warning-subtle text-warning fs-3xl rounded">
+                                    <i class="ph ph-skull-light" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <h2 id="kpi-mortos-valor" class="mb-2">
+                                <span class="counter-value">39452</span>
+                            </h2>
+                            <p class="text-muted mb-3 fw-medium fs-base">Mortos</p>
+                            <div class="mt-auto">
+                                <p class="text-muted mb-0">
+                                    <span id="kpi-mortos-pct" class="badge bg-success-subtle text-success fs-sm">
+                                        <i class="bi bi-arrow-up" aria-hidden="true"></i> 7.93%
+                                    </span><br />
+                                    <small class="text-muted">vs Mês anterior</small>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="progress progress-sm rounded-0" role="progressbar" aria-valuenow="83" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar bg-warning" style="width: 83%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- KPIs -->
+
+    <!-- Evolução Anual -->
+    <div class="row">
+        <div class="col-xxl-12">
+            <div class="card card-height-100">
+                <div class="card-header">
+                    <div class="row w-100 text-center align-items-center">
+                        <div class="col text-start">
+                            <h2 class="card-title mb-0">Evolução Mensal - Ano Atual</h2>
+                        </div>
+                        <div class="col text-end">
+                            <select id="chart-period-select" 
+                                    class="form-select form-select-sm d-inline-block w-auto ms-2" 
+                                    style="width:auto;display:inline-block;"
+                                    aria-label="Selecionar período do gráfico">
+                                <option value="mensal" selected>Mensal</option>
+                                <option value="diario">Diário</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div id="evolucao_anual_chart" 
+                         data-colors='["--tb-primary"]' 
+                         class="apex-charts" 
+                         style="height: 350px;" 
+                         dir="ltr"
+                         aria-label="Gráfico de evolução anual"></div>
+                    <div class="mt-3 text-center">
+                        <span class="badge bg-primary-subtle text-primary" id="chart-indicator">
+                            <i class="ph ph-users me-1" aria-hidden="true"></i>Ativos
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Evolução Anual -->
+
+    <!-- Subtítulo -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                <h2 class="mb-sm-0">Distribuição do Efetivo</h2>
+            </div>
+        </div>
+    </div>
+    <!-- Subtítulo -->
+
+    <!-- Tempo de Servico Idade Residencia -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs mb-3 justify-content-start" id="chartTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="faixa-tab" data-bs-toggle="tab" data-bs-target="#faixa" type="button" role="tab" aria-controls="faixa" aria-selected="true">
+                        Faixa Etária
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="tempo-tab" data-bs-toggle="tab" data-bs-target="#tempo" type="button" role="tab" aria-controls="tempo" aria-selected="false">
+                        Tempo de Serviço
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="residencia-tab" data-bs-toggle="tab" data-bs-target="#residencia" type="button" role="tab" aria-controls="residencia" aria-selected="false">
+                        Residência Município
+                    </button>
+                </li>
+            </ul>
+            
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <!-- Faixa Etária -->
+                <div class="tab-pane fade show active" id="faixa" role="tabpanel" aria-labelledby="faixa-tab">
+                    <div class="card card-height-100">
+                        <div class="card-header position-relative">
+                            <h3 class="card-title text-center w-100 position-absolute start-0">Faixa Etária</h3>
+                            <div class="d-flex justify-content-end gap-2">
+                                <select id="faixa_posto_select" class="form-select form-select-sm w-auto" aria-label="Filtrar por posto">
+                                    <option value="">Todos os Postos</option>
+                                    <option>Coronel</option>
+                                    <option>Tenente Coronel</option>
+                                    <option>Major</option>
+                                    <option>Capitão</option>
+                                    <option>1º Tenente</option>
+                                    <option>Aspirante a Oficial</option>
+                                    <option>Aluno-oficial</option>
+                                    <option>Subtenente</option>
+                                    <option>Cabo E Soldado</option>
+                                    <option>Aluno Soldado</option>
+                                </select>
+                                <select id="faixa_sexo_select" class="form-select form-select-sm w-auto" aria-label="Filtrar por sexo">
+                                    <option value="">Todos os Sexos</option>
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Feminino</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="faixa_etaria_chart" style="height: 200px;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tempo de Serviço -->
+                <div class="tab-pane fade" id="tempo" role="tabpanel" aria-labelledby="tempo-tab">
+                    <div class="card card-height-100">
+                        <div class="card-header position-relative">
+                            <h3 class="card-title text-center w-100 position-absolute start-0">Tempo de Serviço</h3>
+                            <div class="d-flex justify-content-end gap-2">
+                                <select id="tempo_posto_select" class="form-select form-select-sm w-auto" aria-label="Filtrar por posto">
+                                    <option value="">Todos os Postos</option>
+                                    <option>Coronel</option>
+                                    <option>Tenente Coronel</option>
+                                    <option>Major</option>
+                                    <option>Capitão</option>
+                                    <option>1º Tenente</option>
+                                    <option>Aspirante a Oficial</option>
+                                    <option>Aluno-oficial</option>
+                                    <option>Subtenente</option>
+                                    <option>Cabo E Soldado</option>
+                                    <option>Aluno Soldado</option>
+                                </select>
+                                <select id="tempo_sexo_select" class="form-select form-select-sm w-auto" aria-label="Filtrar por sexo">
+                                    <option value="">Todos os Sexos</option>
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Feminino</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="tempo_servico_chart" style="height: 200px;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Residência Município -->
+                <div class="tab-pane fade" id="residencia" role="tabpanel" aria-labelledby="residencia-tab">
+                    <div class="card card-height-100">
+                        <div class="card-header position-relative">
+                            <h3 class="card-title text-center w-100 position-absolute start-0">Residência Município</h3>
+                            <div class="d-flex justify-content-end gap-2">
+                                <select id="residencia_posto_select" class="form-select form-select-sm w-auto" aria-label="Filtrar por posto">
+                                    <option value="">Todos os Postos</option>
+                                    <option>Coronel</option>
+                                    <option>Tenente Coronel</option>
+                                    <option>Major</option>
+                                    <option>Capitão</option>
+                                    <option>1º Tenente</option>
+                                    <option>Aspirante a Oficial</option>
+                                    <option>Aluno-oficial</option>
+                                    <option>Subtenente</option>
+                                    <option>Cabo E Soldado</option>
+                                    <option>Aluno Soldado</option>
+                                </select>
+                                <select id="residencia_sexo_select" class="form-select form-select-sm w-auto" aria-label="Filtrar por sexo">
+                                    <option value="">Todos os Sexos</option>
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Feminino</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="municipio_mora_map" style="height: 200px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Tempo de Servico Idade Residencia -->    
+
+    <!-- Postos Diversidade de Genero Cor ou Raca -->
+    <div class="row mt-4">
+            <div class="col-xxl-5">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title mb-0">Postos</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="postos_chart" 
+                                     style="height: 400px;"
+                                     aria-label="Gráfico de distribuição por órgãos"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comandos de Policiamento -->
+            <div class="col-xxl-3">
+                <div class="card card-height-100">
+                    <div class="card-header align-items-center d-flex">
+                        <h3 class="card-title mb-0 flex-grow-1">Diversidade de Gênero</h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="sexo_chart" 
+                             data-colors='["--tb-primary", "--tb-success", "--tb-warning", "--tb-danger", "--tb-info"]' 
+                             class="apex-charts"
+                             aria-label="Gráfico de donut de comandos de policiamento"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xxl-4">
+            <div class="card card-height-100">
+                <div class="card card-height-100">
+                    <div class="card-header">
+                        <h3 class="card-title mb-0">Cor ou Raça</h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="circulo_polar_area" 
+                             data-colors='["--tb-primary", "--tb-success", "--tb-warning","--tb-danger", "--tb-info", "--tb-success", "--tb-primary", "--tb-dark", "--tb-secondary"]' 
+                             class="apex-charts" 
+                             dir="ltr"
+                             aria-label="Cor ou Raça">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div> 
+    
+     <!-- Estado Civil Orientacao Sexual Religiao -->   
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card card-height-100">
+                <div class="card-header"><h3 class="card-title mb-0">Estado Civil</h3></div>
+                <div class="card-body"><div id="estado_civil_chart" style="height: 200px;"></div></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-height-100">
+                <div class="card-header"><h3 class="card-title mb-0">Orientação Sexual</h3></div>
+                <div class="card-body"><div id="orientacao_sexual_chart" style="height: 200px;"></div></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-height-100">
+                <div class="card-header"><h3 class="card-title mb-0">Religião</h3></div>
+                <div class="card-body"><div id="religiao_chart" style="height: 200px;"></div></div>
+            </div>
+        </div>
+
+    </div>
+
+    
+    
+{% endblock content %}
+
+{% block extra_js %}
+    <!-- ApexCharts -->
+    <script src="{{url_for('static', filename='libs/apexcharts/apexcharts.min.js')}}"></script>
+
+    <!-- Inicialização de gráficos polar area -->
+    <script src="{{url_for('static', filename='js/pages/apexcharts-polararea.init.js')}}"></script>
+    
+    <!-- Inicialização do dashboard -->
+    <script src="{{url_for('static', filename='js/pages/dashboard-efetivo.init.js')}}"></script>
+
+   {% endblock extra_js %}
