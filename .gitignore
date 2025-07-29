@@ -6,7 +6,7 @@ dist/
 wheels/
 *.egg-info
 api_exemplos.py
-key_vault.py
+# key_vault.py
 
 # Virtual environments
 .venv/
@@ -18,7 +18,7 @@ pip-wheel-metadata/
 
 # Node.js
 node_modules/
-libs/
+# libs/
 
 # Flask instance folder
 instance/
@@ -54,5 +54,5 @@ coverage.xml
 .ipynb_checkpoints/
 
 # Env files
-.env
-.env.*
+# .env
+# .env.*
